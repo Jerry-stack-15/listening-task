@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日英語聽力練習 - Daily English Listening</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-headphones me-2"></i>
+                英語聽力練習
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">主頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#daily-task">每日任務</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#progress">學習進度</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">關於</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="display-4 fw-bold mb-4">
+                            提升你的英語聽力
+                            <span class="text-primary">每日15分鐘</span>
+                        </h1>
+                        <p class="lead mb-4">
+                            透過精選的Ted Talk影片和互動式選擇題，
+                            讓你每天輕鬆提升英語聽力能力。
+                        </p>
+                        <div class="hero-stats mb-4">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <h3 class="fw-bold text-primary">5</h3>
+                                        <p class="mb-0">難度級別</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <h3 class="fw-bold text-primary"><span id="current-duration">5-15</span>分</h3>
+                                        <p class="mb-0">影片時長</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <h3 class="fw-bold text-primary">3-5題</h3>
+                                        <p class="mb-0">測試題目</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="difficulty-selector mb-4">
+                            <label class="form-label fw-semibold">選擇你的難度級別：</label>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="difficulty" id="elementary" value="elementary" checked>
+                                <label class="btn btn-outline-primary" for="elementary">
+                                    <i class="fas fa-graduation-cap me-2"></i>小學生
+                                </label>
+                                
+                                <input type="radio" class="btn-check" name="difficulty" id="middle_school" value="middle_school">
+                                <label class="btn btn-outline-primary" for="middle_school">
+                                    <i class="fas fa-school me-2"></i>中學生
+                                </label>
+                                
+                                <input type="radio" class="btn-check" name="difficulty" id="advanced" value="advanced">
+                                <label class="btn btn-outline-primary" for="advanced">
+                                    <i class="fas fa-university me-2"></i>進階
+                                </label>
+                                
+                                <input type="radio" class="btn-check" name="difficulty" id="ielts" value="ielts">
+                                <label class="btn btn-outline-primary" for="ielts">
+                                    <i class="fas fa-globe me-2"></i>IELTS
+                                </label>
+                                
+                                <input type="radio" class="btn-check" name="difficulty" id="toefl" value="toefl">
+                                <label class="btn btn-outline-primary" for="toefl">
+                                    <i class="fas fa-flag-usa me-2"></i>TOEFL
+                                </label>
+                            </div>
+                            <small class="text-muted d-block mt-2">
+                                <i class="fas fa-info-circle me-1"></i>
+                                小學生：5分鐘影片 | 其他：15分鐘影片
+                            </small>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-lg px-4 py-2" onclick="startDailyTask()">
+                            <i class="fas fa-play me-2"></i>
+                            開始今日任務
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <div class="video-preview-card">
+                            <div class="video-placeholder">
+                                <i class="fas fa-play-circle fa-3x text-white"></i>
+                                <p class="mt-3 text-white">今日精選影片</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Task Section -->
+    <section id="daily-task" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">今日學習任務</h2>
+                    <p class="lead text-muted">完成今日任務，提升你的英語聽力能力</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="task-card card shadow-sm">
+                        <div class="card-header bg-white border-0 p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="mb-1">今日任務</h4>
+                                    <p class="mb-0 text-muted">
+                                        <i class="fas fa-calendar-day me-2"></i>
+                                        <span id="current-date"></span>
+                                    </p>
+                                </div>
+                                <div class="task-status">
+                                    <span class="badge bg-warning px-3 py-2" id="task-status">未完成</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body p-4">
+                            <!-- Video Player Section -->
+                            <div id="video-section" class="mb-4">
+                                <div class="video-container mb-4">
+                                    <div id="video-player" class="video-player">
+                                        <div class="video-loading text-center py-5">
+                                            <div class="spinner-border text-primary mb-3" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <p>正在加載今日影片...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="video-info d-none" id="video-info">
+                                    <h5 id="video-title" class="mb-2"></h5>
+                                    <p id="video-description" class="text-muted mb-3"></p>
+                                    <div class="video-meta">
+                                        <span class="badge bg-secondary me-2">
+                                            <i class="fas fa-clock me-1"></i>
+                                            <span id="video-duration"></span>
+                                        </span>
+                                        <span class="badge bg-secondary">
+                                            <i class="fas fa-tag me-1"></i>
+                                            <span id="video-category"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quiz Section -->
+                            <div id="quiz-section" class="d-none">
+                                <div class="quiz-header mb-4">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-question-circle text-primary me-2"></i>
+                                        理解測試
+                                    </h5>
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar bg-primary" id="quiz-progress" style="width: 0%"></div>
+                                    </div>
+                                    <p class="text-muted mb-0">
+                                        題目 <span id="current-question">1</span> / <span id="total-questions">5</span>
+                                    </p>
+                                </div>
+
+                                <div id="question-container" class="question-container mb-4">
+                                    <!-- Questions will be dynamically loaded here -->
+                                </div>
+
+                                <div id="quiz-navigation" class="d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary" id="prev-btn" onclick="previousQuestion()" disabled>
+                                        <i class="fas fa-chevron-left me-2"></i>上一題
+                                    </button>
+                                    <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">
+                                        下一題<i class="fas fa-chevron-right ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Results Section -->
+                            <div id="results-section" class="d-none">
+                                <div class="results-card text-center p-4">
+                                    <div id="results-icon" class="mb-3">
+                                        <i class="fas fa-trophy fa-3x text-warning"></i>
+                                    </div>
+                                    <h4 id="results-title" class="mb-3">任務完成！</h4>
+                                    <div id="results-score" class="mb-3">
+                                        <h2 class="display-4 fw-bold text-primary">
+                                            <span id="score-correct">0</span> / <span id="score-total">5</span>
+                                        </h2>
+                                        <p class="text-muted">答對題數</p>
+                                    </div>
+                                    <div id="results-feedback" class="mb-4">
+                                        <p class="lead" id="feedback-text"></p>
+                                    </div>
+                                    <button class="btn btn-primary btn-lg" onclick="viewProgress()">
+                                        <i class="fas fa-chart-line me-2"></i>查看進度
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">學習進度</h2>
+                    <p class="lead text-muted">追蹤你的英語聽力進步情況</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="progress-card card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="progress-circle mb-3">
+                            <div class="progress-ring">
+                                <svg class="progress-ring-svg" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e9ecef" stroke-width="8"/>
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="#007bff" stroke-width="8"
+                                            stroke-dasharray="339.292" stroke-dashoffset="339.292" id="progress-circle"/>
+                                </svg>
+                                <div class="progress-text">
+                                    <span class="progress-percentage" id="progress-percentage">0</span>
+                                    <small>%</small>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title">本週完成率</h5>
+                        <p class="card-text text-muted">本週已完成的任務比例</p>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="stats-card card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">學習統計</h5>
+                            <div class="stat-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">總學習日數</span>
+                                    <span class="fw-bold" id="total-days">0</span>
+                                </div>
+                            </div>
+                            <div class="stat-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">完成任務</span>
+                                    <span class="fw-bold" id="completed-tasks">0</span>
+                                </div>
+                            </div>
+                            <div class="stat-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">平均答對率</span>
+                                    <span class="fw-bold" id="avg-accuracy">0%</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">連續學習</span>
+                                    <span class="fw-bold" id="streak-days">0天</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="calendar-card card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">學習日曆</h5>
+                            <div id="mini-calendar" class="mini-calendar">
+                                <!-- Calendar will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="display-5 fw-bold mb-4">關於我們</h2>
+                    <p class="lead mb-4">
+                        我們致力於提供高質量的英語聽力學習體驗，
+                        透過精選的Ted Talk影片和互動式測試，
+                        幫助學習者有效提升英語聽力能力。
+                    </p>
+                    <div class="row text-center mt-5">
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-video fa-2x text-primary"></i>
+                            </div>
+                            <h5>精選影片</h5>
+                            <p class="text-muted">每日精選15分鐘高質量Ted Talk影片</p>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-brain fa-2x text-primary"></i>
+                            </div>
+                            <h5>智能測試</h5>
+                            <p class="text-muted">5道選擇題測試理解程度</p>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-chart-line fa-2x text-primary"></i>
+                            </div>
+                            <h5>進度追蹤</h5>
+                            <p class="text-muted">詳細的學習進度統計</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 英語聽力練習. 保留所有權利.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Made with <i class="fas fa-heart text-danger"></i> for English Learners</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
